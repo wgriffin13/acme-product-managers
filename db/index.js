@@ -7,7 +7,8 @@ const seed = {
     products: [
         {name: 'bar', managerId: 1},
         {name: 'bazz', managerId: 1},
-        {name: 'foo', managerId: 3}
+        {name: 'foo', managerId: 3},
+        {name: 'oth'}
     ],
     users: [
         {name: 'moe'},
@@ -40,4 +41,8 @@ const syncAndSeed = () => {
         })
 }
 
-module.exports = {syncAndSeed}
+module.exports = {
+    syncAndSeed,
+    Product,
+    User
+}
