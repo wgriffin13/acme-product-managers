@@ -9,7 +9,7 @@ class Products extends Component {
             <ul className="list-group">
                 {this.props.products.map(product => {
                     return (
-                        <SingleProduct key={product.id} product={product} users={this.props.users} />
+                        <SingleProduct key={product.id} product={product} users={this.props.users} history={this.props.history} />
                     )
                 })}
             </ul>

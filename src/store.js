@@ -45,6 +45,16 @@ export const getProducts = () => {
     }
 }
 
+export const updateProduct = (product) => {
+    return (dispatch) => {
+        axios.put('/api/products/' + product.id, product)
+            .then(() => {
+                dispatch(getUsers())
+                dispatch(getProducts())
+            })
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GOT_USERS:

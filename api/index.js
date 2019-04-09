@@ -14,7 +14,9 @@ router.put('/products/:id', (req, res, next) => {
 })
 
 router.get('/products', (req, res, next) => {
-    Product.findAll()
+    Product.findAll({order: [
+            ['id', 'DESC']
+        ]})
         .then(data => res.send(data))
         .catch(next)
 })

@@ -13,6 +13,7 @@ class App extends Component {
         super()
         this.managerCount = this.managerCount.bind(this)
         this.getMangers = this.getMangers.bind(this)
+        this.findOpenings = this.findOpenings.bind(this)
     }
 
     managerCount (products) {
@@ -39,6 +40,16 @@ class App extends Component {
         return managers
     }
 
+    findOpenings (products) {
+        let openings = false
+        products.forEach(product => {
+            if (!product.managerId) {
+                openings = true
+            }
+        })
+        return openings
+    }
+
     componentDidMount () {
         this.props.requestGetUsers()
         this.props.requestGetProducts()
@@ -49,8 +60,8 @@ class App extends Component {
             <div className="container ">
                 <h1>Acme Product Managers</h1>
                 <Nav mCount={this.managerCount(this.props.products)} />
-                <Route exact path="/" component={Home} />
-                <Route exact path="/products" component={Products} />
+                <Route exact path="/" render={() => <Home openings={this.findOpenings(this.props.products)} />} />
+                <Route exact path="/products" render={({history}) => <Products history={history} />} />
                 <Route exact path="/managers" render={() => <Managers managers={this.getMangers(this.props.products, this.props.users)} />} />
             </div>
         )
